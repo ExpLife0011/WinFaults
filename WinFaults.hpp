@@ -98,7 +98,7 @@ namespace WinFaults
 
 	// One way as it's not one to one mapped.
 	//
-	static constexpr FaultId FromNtStatus( long Status )
+	static constexpr FaultId FromNtStatus( unsigned Status )
 	{
 		for ( const FaultBinding& Mapping : FaultMap )
 			if ( Mapping.Nt == Status )
