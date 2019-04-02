@@ -14,40 +14,45 @@ namespace WinFaults
 
 	// All fault IDs possible
 	//
-	enum FaultId
+	namespace FaultWrapper
 	{
-		/* ------------------------------------------------------------------------------------ */
-		// -- Faults
-		//
-		FAULT_PF =			E( 0 ),		// KiPageFault
-		FAULT_BR =			E( 1 ),		// KiBoundFault
-		FAULT_SS =			E( 2 ),		// KiStackFault
-		FAULT_XF =			E( 3 ),		// KiXmmException
-		FAULT_AC =			E( 4 ),		// KiAlignmentFault
-		FAULT_DB =			E( 5 ),		// KiDebugTrapOrFault
-		FAULT_DE =			E( 6 ),		// KiDivideErrorFault
-		FAULT_UD =			E( 7 ),		// KiInvalidOpcodeFault
-		FAULT_MF =			E( 8 ),		// KiFloatingErrorFault
-		FAULT_NP =			E( 9 ),		// KiSegmentNotPresentFault
-		FAULT_GP =			E( 10 ),	// KiGeneralProtectionFault
-	
-		// -- Traps
-		//
-		TRAP_OF =			E( 11 ),	// KiOverflowTrap
-		TRAP_BP =			E( 12 ),	// KiBreakpointTrap
-								
-		// -- Exceptional cases
-		//
-		INT_2C =			E( 13 ),	// KiRaiseAssertion
-		SYSCALL_32 =			E( 14 ),	// KiSystemCall32ShadowCommon
-		FAULT_XM_OR_XF =		E( 15 ),	// KiXmmException or KiFloatingErrorFault
-		/* ------------------------------------------------------------------------------------ */
+		enum FaultId
+		{
+			/* ------------------------------------------------------------------------------------ */
+			// -- Faults
+			//
+			FAULT_PF =			E( 0 ),		// KiPageFault
+			FAULT_BR =			E( 1 ),		// KiBoundFault
+			FAULT_SS =			E( 2 ),		// KiStackFault
+			FAULT_XF =			E( 3 ),		// KiXmmException
+			FAULT_AC =			E( 4 ),		// KiAlignmentFault
+			FAULT_DB =			E( 5 ),		// KiDebugTrapOrFault
+			FAULT_DE =			E( 6 ),		// KiDivideErrorFault
+			FAULT_UD =			E( 7 ),		// KiInvalidOpcodeFault
+			FAULT_MF =			E( 8 ),		// KiFloatingErrorFault
+			FAULT_NP =			E( 9 ),		// KiSegmentNotPresentFault
+			FAULT_GP =			E( 10 ),	// KiGeneralProtectionFault
 
-		// -- Constants
-		FAULT_UNKNOWN =			E( 16 ),
-		FAULT_MAX =			E( 16 ),	// Only relevant if using IDs
-		FAULT_ALL =			FAULT_MAX - 1	// Only relevant if using masks
+			// -- Traps
+			//
+			TRAP_OF =			E( 11 ),	// KiOverflowTrap
+			TRAP_BP =			E( 12 ),	// KiBreakpointTrap
+
+			// -- Exceptional cases
+			//
+			INT_2C =			E( 13 ),	// KiRaiseAssertion
+			SYSCALL_32 =			E( 14 ),	// KiSystemCall32ShadowCommon
+			FAULT_XM_OR_XF =		E( 15 ),	// KiXmmException or KiFloatingErrorFault
+			/* ------------------------------------------------------------------------------------ */
+
+			// -- Constants
+			FAULT_UNKNOWN =			E( 16 ),
+			FAULT_MAX =			E( 16 ),	// Only relevant if using IDs
+			FAULT_ALL =			FAULT_MAX - 1	// Only relevant if using masks
+		};
 	};
+
+	using namespace FaultWrapper;
 
 
 	// Mapping of codes passed to KiExceptionDispatch before KiPreprocessFault
@@ -102,4 +107,4 @@ namespace WinFaults
 	}
 };
 
-using WinFaults::FaultId;
+using namespace WinFaults::FaultWrapper;
